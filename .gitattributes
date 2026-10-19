@@ -1,0 +1,3 @@
+*.reg binary
+*.bcd binary
+*.ps1 text eol=crlf

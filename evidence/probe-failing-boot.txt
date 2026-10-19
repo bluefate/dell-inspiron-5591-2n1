@@ -1,0 +1,25 @@
+﻿Probe start. User=<user> Session=1 Boot='Normal boot' Delay=20 NoSwitch=False
+===== BEFORE DisplaySwitch  2026-10-19T16:25:33.1706995-04:00
+--- Active paths (QDC_ONLY_ACTIVE_PATHS)
+path0: active=True src=0 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=C40F
+--- All available paths (QDC_ALL_PATHS, available only)
+path0: active=True src=0 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=C40F
+path1: active=False src=1 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=C40F
+path2: active=False src=2 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=C40F
+--- Screens
+\\.\DISPLAY1 primary=True bounds={X=0,Y=0,Width=1920,Height=1080}
+--- WmiMonitorConnectionParams (5=HDMI, 11=eDP, 0x80000000=internal)
+DISPLAY\DELA115\4&23f8781f&1&UID198171_0 active=True tech=5
+--- Running DisplaySwitch.exe /external
+===== AFTER DisplaySwitch /external  2026-10-19T16:25:43.5255702-04:00
+--- Active paths (QDC_ONLY_ACTIVE_PATHS)
+path0: active=True src=0 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=C40F
+--- All available paths (QDC_ALL_PATHS, available only)
+path0: active=True src=0 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=C40F
+path1: active=False src=1 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=C40F
+path2: active=False src=2 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=C40F
+--- Screens
+\\.\DISPLAY1 primary=True bounds={X=0,Y=0,Width=1920,Height=1080}
+--- WmiMonitorConnectionParams (5=HDMI, 11=eDP, 0x80000000=internal)
+DISPLAY\DELA115\4&23f8781f&1&UID198171_0 active=True tech=5
+Probe end.

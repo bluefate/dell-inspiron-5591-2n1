@@ -1,0 +1,47 @@
+﻿Probe start. User=<user> Session=1 Boot='Normal boot' Delay=20 NoSwitch=False
+===== BEFORE DisplaySwitch  2026-10-19T17:01:53.6716118-04:00
+--- Screenshot BEFOREDisplaySwitch FAILED: Exception calling "CopyFromScreen" with "5" argument(s): "The handle is invalid"
+Power states at 2026-10-19T17:01:56.3749998-04:00:
+  LIDSWITCH_STATE (0=closed, 1=open) = 1
+  MONITOR_POWER_ON (0=off, 1=on) = 0
+  SESSION_DISPLAY_STATUS (0=off, 1=on, 2=dimmed) = 0
+  AWAYMODE / (ignore) = 1
+  CONSOLE_DISPLAY_STATE (0=off, 1=on, 2=dimmed) = 0
+--- Sensor services
+SensorDataService Stopped
+SensorService Stopped
+SensrSvc Stopped
+--- Active paths (QDC_ONLY_ACTIVE_PATHS)
+path0: active=True src=0 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=BFD3
+--- All available paths (QDC_ALL_PATHS, available only)
+path0: active=True src=0 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=BFD3
+path1: active=False src=1 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=BFD3
+path2: active=False src=2 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=BFD3
+--- Screens
+\\.\DISPLAY1 primary=True bounds={X=0,Y=0,Width=1920,Height=1080}
+--- WmiMonitorConnectionParams (5=HDMI, 11=eDP, 0x80000000=internal)
+DISPLAY\DELA115\4&23f8781f&1&UID198171_0 active=True tech=5
+--- Running DisplaySwitch.exe /external
+===== AFTER DisplaySwitch /external  2026-10-19T17:02:06.8013835-04:00
+--- Screenshot AFTERDisplaySwitchexternal FAILED: Exception calling "CopyFromScreen" with "5" argument(s): "The handle is invalid"
+Power states at 2026-10-19T17:02:08.7877683-04:00:
+  LIDSWITCH_STATE (0=closed, 1=open) = 1
+  MONITOR_POWER_ON (0=off, 1=on) = 0
+  SESSION_DISPLAY_STATUS (0=off, 1=on, 2=dimmed) = 0
+  AWAYMODE / (ignore) = 1
+  CONSOLE_DISPLAY_STATE (0=off, 1=on, 2=dimmed) = 0
+--- Sensor services
+SensorDataService Stopped
+SensorService Stopped
+SensrSvc Stopped
+--- Active paths (QDC_ONLY_ACTIVE_PATHS)
+path0: active=True src=0 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=BFD3
+--- All available paths (QDC_ALL_PATHS, available only)
+path0: active=True src=0 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=BFD3
+path1: active=False src=1 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=BFD3
+path2: active=False src=2 target=198171 available=True tech=0x5 name='DELL P2219H' devpath='\\?\DISPLAY#DELA115#4&23f8781f&1&UID198171#{e6f07b5f-ee97-4a90-b076-33f57bf4eaa7}' adapter=BFD3
+--- Screens
+\\.\DISPLAY1 primary=True bounds={X=0,Y=0,Width=1920,Height=1080}
+--- WmiMonitorConnectionParams (5=HDMI, 11=eDP, 0x80000000=internal)
+DISPLAY\DELA115\4&23f8781f&1&UID198171_0 active=True tech=5
+Probe end.

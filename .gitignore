@@ -1,0 +1,9 @@
+# Machine-specific / private files kept only on the private branch
+WORKLOG.md
+black-screen-diagnostic-report.md
+backups/
+evidence/probe-2026*.txt
+*.png
+*.dmp
+*.reg
+*.bcd
