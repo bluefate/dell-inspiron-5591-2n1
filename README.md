@@ -2,7 +2,7 @@
 
 **Symptom:** you removed the laptop's screen assembly (panel, webcam, mic, cables) and use an external HDMI monitor. Windows 11 now boots to a **black screen with a movable mouse cursor**: no sign-in screen, no desktop, no Task Manager. BIOS, Windows Recovery and Safe Mode all display fine on the same monitor.
 
-**Fix:** in Safe Mode, **disable "Intel(R) Integrated Sensor Solution"** in Device Manager, then restart normally.
+**Fix:** in Safe Mode, **disable "Intel(R) Integrated Sensor Solution"** in Device Manager, then restart normally. Also disable the orphaned touchscreen (**I2C HID Device** `ACPI\CUST0000`), and install the audio and fingerprint drivers if they're missing. See [the clean-up section](#after-the-fix-clean-up-the-remaining-devices).
 
 **Root cause:** on this 2-in-1, Windows 11 reads the laptop's sensor hub (accelerometers in the base *and in the lid*) to work out the device's posture. With the lid assembly gone, those readings no longer make sense, and Windows 11 keeps the display switched off. Moving the mouse or pressing keys doesn't wake it. Windows 10 and Linux don't do this, which is why they work on the same hardware. Safe Mode works because it doesn't start the sensor services.
 
@@ -55,7 +55,11 @@ Restart and boot normally (not Safe Mode). The sign-in screen and desktop should
 
 If the screen goes dark on the sign-in screen after about a minute, that's normal Windows screen timeout. Move the mouse and it comes back. (Before the fix, it never came back.)
 
-### 4. Undo (if ever needed)
+### 4. Disable the touchscreen device and fix the remaining drivers
+
+The touchscreen was in the removed screen assembly, but Windows keeps trying to start it. In Device Manager → **Human Interface Devices**, right-click the **I2C HID Device with the warning icon** (`ACPI\CUST0000`) → **Disable device**. Then install the missing audio and fingerprint drivers. Both steps are covered in [After the fix: clean up the remaining devices](#after-the-fix-clean-up-the-remaining-devices).
+
+### 5. Undo (if ever needed)
 
 Device Manager → System devices → right-click **Intel(R) Integrated Sensor Solution** → **Enable device**. Or:
 
@@ -105,6 +109,37 @@ The full investigation is in [`docs/investigation.md`](docs/investigation.md).
 
 These scripts are diagnostic aids, provided as-is. Read them before running.
 
-## Unrelated note
+## After the fix: clean up the remaining devices
 
-After the factory reset on this machine, the **audio controller** (`PCI\VEN_8086&DEV_02C8`, Intel Smart Sound) had no driver. Install Dell's audio drivers or use Windows Update. This has nothing to do with the black screen.
+Once the desktop is back, Device Manager will probably still show a few problem devices. Here's what they are on the Inspiron 5591 2-in-1 and what to do:
+
+| Device in Device Manager | Hardware ID | Cause | Action |
+|---|---|---|---|
+| **I2C HID Device** with a ⚠️ (code 10, "cannot start") | `ACPI\CUST0000` | The **touchscreen digitizer**. It was part of the removed screen assembly. | **Disable it** (see below). Leave the *other* I2C HID Device (`ACPI\DELL095E`) alone: that's the touchpad. |
+| **Multimedia Audio Controller** (code 28, no driver) | `PCI\VEN_8086&DEV_02C8` | Intel Smart Sound audio controller has no driver (common after a reset). No sound at all. | Install the Intel audio driver from Windows Update (below). The Realtek codec driver usually follows automatically. |
+| **FingerPrint** (code 28, no driver) | `USB\VID_27C6&PID_538C` | Goodix fingerprint reader (in the base, still present). | Install the Goodix driver from Windows Update (below). |
+| **Intel(R) Integrated Sensor Solution** (disabled) | `PCI\VEN_8086&DEV_02FC` | Disabled on purpose; this *is* the fix. | Leave it disabled. |
+
+### Disable the touchscreen I2C HID device
+
+Device Manager → **Human Interface Devices** → right-click the **I2C HID Device that has the warning icon** → **Disable device**. Or from an elevated PowerShell:
+
+```powershell
+Get-PnpDevice -PresentOnly | Where-Object InstanceId -like 'ACPI\CUST0000*' | Disable-PnpDevice -Confirm:$false
+```
+
+### Install the audio and fingerprint drivers (Windows Update)
+
+**Settings → Windows Update → Advanced options → Optional updates → Driver updates**, then tick **only**:
+
+- **Intel Corporation - System - 10.23.0.2672** (Intel Smart Sound, for `DEV_02C8`)
+- **Goodix - Biometric - 3.1.34.500** (fingerprint)
+
+Click **Download & install** and restart if asked.
+
+**Don't tick these** if they appear in the same list:
+
+- **Intel Corporation - Display - 27.20.100.9664** and the related **Intel Corporation - Extension** entries. That's the old 2021 graphics driver, and it would replace a newer one if you've updated it.
+- **Dell, Inc. - Firmware**. It's a UEFI/firmware update; do it separately and deliberately if you want it, since the fix doesn't need it.
+
+Versions are what Windows Update offered in October 2026; yours may be newer. Dell's support site (enter your service tag) has the same audio and fingerprint drivers if you prefer to download them directly.

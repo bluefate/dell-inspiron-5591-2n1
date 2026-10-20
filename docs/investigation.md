@@ -70,3 +70,15 @@ In the failing boots, input never woke the display and no 506/507 transitions we
 - Diff boot-log sessions rather than reading individual `BOOTLOG_NOT_LOADED` lines.
 - Prove the screen layout, not the theory: a small probe at sign-in (QueryDisplayConfig + power settings) settled two hypotheses in one boot.
 - Ask what *else* was removed with the hardware. Here it was sensors, not the panel, that mattered.
+
+## 6. Follow-up: remaining devices
+
+After the fix, Device Manager still showed three problems. Windows Update was searched from the running system (`Microsoft.Update.Session`, `Type='Driver'`).
+
+| Device | ID | State | Resolution |
+|---|---|---|---|
+| I2C HID Device | `ACPI\CUST0000` | Code 10 | Touchscreen digitizer from the removed lid. **Disabled.** (The touchpad is `ACPI\DELL095E` and is fine.) |
+| Multimedia Audio Controller | `PCI\VEN_8086&DEV_02C8` | Code 28 since the reset | Windows Update offers *Intel Corporation - System - 10.23.0.2672* (Intel Smart Sound) |
+| FingerPrint | `USB\VID_27C6&PID_538C` | Code 28 | Windows Update offers *Goodix - Biometric - 3.1.34.500* |
+
+Windows Update also offered the old *Intel Display 27.20.100.9664* driver and Dell extension/firmware packages. Skip those: the display package would downgrade the newer graphics driver.
