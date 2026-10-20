@@ -155,7 +155,20 @@ Also worth ticking: **Realtek - SoftwareComponent - 11.0.6000.792** (the Realtek
 
 Windows Update does offer drivers for both (*Intel(R) Corporation - MEDIA - 10.23.0.2672* and *Intel(R) Corporation - System - 1.0.1048.0*), but **don't install them**. The mic driver would create a "Microphone Array" recording device for mics that no longer exist, and apps like Teams or Zoom may pick it as the default and record silence. Disable both in Device Manager (right-click → **Disable device**) instead. A headset mic on the audio jack, or a USB/webcam mic, still works.
 
-When you're done, Device Manager should show only the **four devices you disabled on purpose**: *Intel(R) Integrated Sensor Solution* (the fix), the touchscreen *I2C HID Device* (`ACPI\CUST0000`), *Digital microphone device* and *Detection Verification*. Sound (Realtek speakers/jack and Intel Display Audio over HDMI) and the Goodix fingerprint reader work.
+### Final state (verified)
+
+On the reference laptop, after all of the above, Device Manager shows **no errors**, only these four intentionally disabled devices (code 22, "disabled"):
+
+| Disabled device | Why |
+|---|---|
+| Intel(R) Integrated Sensor Solution | **The black-screen fix** |
+| I2C HID Device (`ACPI\CUST0000`) | Touchscreen, removed with the lid |
+| Digital microphone device | Built-in mics, removed with the lid |
+| Detection Verification | Wake-word detection for those mics |
+
+Working: Intel UHD Graphics (HDMI), Realtek(R) Audio (speakers/jack), Intel(R) Display Audio (sound over HDMI), Intel SST, Goodix fingerprint, touchpad, Wi-Fi, USB.
+
+In short, Device Manager should show only the **four devices you disabled on purpose**: *Intel(R) Integrated Sensor Solution* (the fix), the touchscreen *I2C HID Device* (`ACPI\CUST0000`), *Digital microphone device* and *Detection Verification*. Sound (Realtek speakers/jack and Intel Display Audio over HDMI) and the Goodix fingerprint reader work.
 
 **Don't tick these** if they appear in the same list:
 
