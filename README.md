@@ -137,6 +137,17 @@ Get-PnpDevice -PresentOnly | Where-Object InstanceId -like 'ACPI\CUST0000*' | Di
 
 Click **Download & install** and restart if asked.
 
+**Second round.** Once the Intel audio driver is in, two new warnings usually appear, because new child devices show up:
+
+| New warning | Hardware ID | What it is | Windows Update driver to tick |
+|---|---|---|---|
+| **Intel High Definition DSP** | `INTELAUDIO\DSP_CTLR_DEV_02C8&VEN_8086&DEV_0222` | Digital-microphone DSP. The built-in mics were in the removed lid, so you gain no mic, but the driver clears the warning. Headset mics on the jack go through Realtek and work regardless. | **Intel(R) Corporation - System - 10.23.2672.2** |
+| **Waves Audio Effects Component** | `APO\VEN_WAVES&AID_MA8MV5` | Dell's Waves MaxxAudio sound enhancement for the Realtek codec (optional) | **Waves - SoftwareComponent - 5.2.0.307** |
+
+Also worth ticking: **Realtek - SoftwareComponent - 11.0.6000.792** (the Realtek audio control app). Restart afterwards.
+
+When you're done, only the two devices you **disabled on purpose** should show an icon in Device Manager: the touchscreen *I2C HID Device* (`ACPI\CUST0000`) and *Intel(R) Integrated Sensor Solution*. Sound (Realtek speakers/jack and Intel Display Audio over HDMI) and the Goodix fingerprint reader work.
+
 **Don't tick these** if they appear in the same list:
 
 - **Intel Corporation - Display - 27.20.100.9664** and the related **Intel Corporation - Extension** entries. That's the old 2021 graphics driver, and it would replace a newer one if you've updated it.

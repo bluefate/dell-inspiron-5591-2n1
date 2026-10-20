@@ -82,3 +82,5 @@ After the fix, Device Manager still showed three problems. Windows Update was se
 | FingerPrint | `USB\VID_27C6&PID_538C` | Code 28 | Windows Update offers *Goodix - Biometric - 3.1.34.500* |
 
 Windows Update also offered the old *Intel Display 27.20.100.9664* driver and Dell extension/firmware packages. Skip those: the display package would downgrade the newer graphics driver.
+
+After installing Intel SST and Goodix: *Intel(R) Smart Sound Technology (Intel(R) SST) Audio Controller*, *Realtek(R) Audio*, *Intel(R) Display Audio* and *Goodix fingerprint* were OK. Two new child devices then needed drivers: *Intel High Definition DSP* (`INTELAUDIO\DSP_CTLR_DEV_02C8&VEN_8086&DEV_0222`, the digital-mic DSP; Windows Update offers Intel System 10.23.2672.2) and *Waves Audio Effects Component* (`APO\VEN_WAVES&AID_MA8MV5`; Windows Update offers Waves 5.2.0.307). Windows Update also offered the Realtek SoftwareComponent 11.0.6000.792.
