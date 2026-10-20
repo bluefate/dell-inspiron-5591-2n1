@@ -146,7 +146,16 @@ Click **Download & install** and restart if asked.
 
 Also worth ticking: **Realtek - SoftwareComponent - 11.0.6000.792** (the Realtek audio control app). Restart afterwards.
 
-When you're done, only the two devices you **disabled on purpose** should show an icon in Device Manager: the touchscreen *I2C HID Device* (`ACPI\CUST0000`) and *Intel(R) Integrated Sensor Solution*. Sound (Realtek speakers/jack and Intel Display Audio over HDMI) and the Goodix fingerprint reader work.
+**Third round: disable the built-in microphone devices.** Once the DSP driver is in, it shows up as *Intel(R) Smart Sound Technology (Intel(R) SST) OED*, and two more devices appear underneath it:
+
+| New warning | Hardware ID | What it is | Action |
+|---|---|---|---|
+| **Digital microphone device** | `INTELAUDIO\CTLR_DEV_02C8&LINKTYPE_02&DEVTYPE_01&VEN_8086&DEV_AE20` | The built-in microphone array. It was in the removed lid. | **Disable** |
+| **Detection Verification** | `{DD8E82AE-334B-49A2-AEAE-AEB0FD5C40DD}\DetectionVerification` | Intel wake-word / voice-activation verifier, which uses those same mics | **Disable** |
+
+Windows Update does offer drivers for both (*Intel(R) Corporation - MEDIA - 10.23.0.2672* and *Intel(R) Corporation - System - 1.0.1048.0*), but **don't install them**. The mic driver would create a "Microphone Array" recording device for mics that no longer exist, and apps like Teams or Zoom may pick it as the default and record silence. Disable both in Device Manager (right-click → **Disable device**) instead. A headset mic on the audio jack, or a USB/webcam mic, still works.
+
+When you're done, Device Manager should show only the **four devices you disabled on purpose**: *Intel(R) Integrated Sensor Solution* (the fix), the touchscreen *I2C HID Device* (`ACPI\CUST0000`), *Digital microphone device* and *Detection Verification*. Sound (Realtek speakers/jack and Intel Display Audio over HDMI) and the Goodix fingerprint reader work.
 
 **Don't tick these** if they appear in the same list:
 
